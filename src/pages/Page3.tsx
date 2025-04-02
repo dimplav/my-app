@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Grid, TextField } from "@mui/material";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { AppContext } from "../App";
 
 export const Page3 = () => {
   const { data, setData } = useContext(AppContext);
-  const navigate = useNavigate();
 
   return (
     <Grid container size={{ xs: 12, sm: 12, md: 12, lg: 6, xl: 6 }} spacing={1} p={1}>
@@ -63,6 +61,7 @@ export const Page3 = () => {
                   size="small"
                   label={"order"}
                   value={employee?.order}
+                  type="number"
                   onChange={(e: any) =>
                     setData({
                       ...data,
@@ -116,7 +115,6 @@ export const Page3 = () => {
         );
       })}
 
-      <Button onClick={() => navigate("/page4")}>Add employee</Button>
       <Button onClick={() => console.log(data)}>Print</Button>
     </Grid>
   );

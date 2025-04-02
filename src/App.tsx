@@ -7,15 +7,16 @@ import { Page1 } from "./pages/Page1";
 import { Page2 } from "./pages/Page2";
 import { Page3 } from "./pages/Page3";
 import { Page4 } from "./pages/Page4";
+import { IData } from "./Models";
 
 interface AppContextType {
-  data?: any;
+  data?: IData;
   setData?: any;
 }
 export const AppContext = createContext<AppContextType>({});
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [data, setData] = useState<any>(DATA);
+  const [data, setData] = useState<IData>(DATA);
 
   return <AppContext.Provider value={{ data, setData }}>{children}</AppContext.Provider>;
 };

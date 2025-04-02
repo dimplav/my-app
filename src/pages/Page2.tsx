@@ -11,10 +11,11 @@ export const Page2 = () => {
 
   const removeEmployee = (id: number) => {
     const findIndex = data?.employees?.findIndex((e: any) => e.order === id);
-    setData({
-      ...data,
-      employees: [...(data?.employees?.slice(0, findIndex) ?? []), ...(data?.employees?.slice(findIndex + 1) ?? [])],
-    });
+    if (findIndex && findIndex !== -1)
+      setData({
+        ...data,
+        employees: [...(data?.employees?.slice(0, findIndex) ?? []), ...(data?.employees?.slice(findIndex + 1) ?? [])],
+      });
   };
 
   return (
@@ -37,7 +38,14 @@ export const Page2 = () => {
                 <TextField fullWidth size="small" label={"employee_last_name"} value={employee?.employee_last_name} />
               </Grid>
               <Grid size={{ xs: 12, sm: 12, md: 12, lg: 4, xl: 4 }}>
-                <TextField fullWidth size="small" label={"order"} value={employee?.order} />
+                <TextField
+                  fullWidth
+                  size="small"
+                  type="number"
+                  slotProps={{ htmlInput: { min: data?.employees?.length } }}
+                  label={"order"}
+                  value={employee?.order}
+                />
               </Grid>
             </Grid>
             <Grid container size={{ xs: 2 }} flexDirection={"row"}>
